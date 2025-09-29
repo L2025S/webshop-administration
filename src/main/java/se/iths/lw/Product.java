@@ -50,12 +50,8 @@ abstract class Product {
 
     @Override
     public String toString() {
-        return "Product " +
-                "articleNumber=" + articleNumber +
-                ", \n title=" + title +
-                ", \n price=" + price +
-                ", \n description: " + description +
-                ",\n stock: " + stock;
+        return "Product " + "articleNumber: " + articleNumber + ", title: " + title + ", price: " + price +
+                ", description: " + description + ",stock: " + stock;
     }
 
 

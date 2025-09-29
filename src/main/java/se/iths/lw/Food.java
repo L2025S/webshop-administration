@@ -23,7 +23,7 @@ class Food extends Product {
 
     @Override
     public String toString() {
-        super.toString(); // 这个多余了？ 还是说没有作用？
-        return "Expiration Date: " + expirationDate;
+        return "Food " + "articleNumber=" + getArticleNumber() + ", title=" + getTitle() + ", price=" + getPrice() +
+                ", description: " + getDescription() + ",stock: " + getStock() + ", expirationDate=" + getExpirationDate();
     }
 }

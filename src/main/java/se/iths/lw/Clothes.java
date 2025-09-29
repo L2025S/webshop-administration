@@ -29,7 +29,7 @@ class Clothes extends Product {
 
     @Override
     public String toString(){
-        super.toString();// 这个多余了？ 还是说没有作用？
-        return "size: " + size + ", \n color : " + color;
+        return "Clothes " + "articleNumber: " + getArticleNumber() + ", title: " + getTitle() + ", size: " + size +
+                ", color: " + color + ", price: " + getPrice() + ", description: " + getDescription() + ", stock: " + getStock();
     }
 }

@@ -3,7 +3,7 @@ package se.iths.lw;
 class Book extends Product {
     private String author;
 
-    Book (String articleNumber, String title,String author, double price, String description, int stock) {
+    Book (String articleNumber, String title, String author, double price, String description, int stock) {
         super(articleNumber, title, price, description, stock);
         this.author = author;
     }
@@ -20,8 +20,8 @@ class Book extends Product {
     }
     @Override
     public String toString (){
-        super.toString(); // 这个多余？ 还是没有作用？
-        return "Author: " + author;
+        return "Book " + "articleNumber=" + getArticleNumber() + ", title=" + getTitle() + ", Author: " + author +
+                ", price=" + getPrice() + ", description: " + getDescription() + ",stock: " + getStock();
 
     }
 
