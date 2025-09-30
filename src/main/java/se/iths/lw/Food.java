@@ -27,5 +27,4 @@ class Food extends Product {
         return String.format(Locale.US, "%s, %s, %.2f, %s, %s ", getExpirationDate(), getTitle(), getPrice(), expirationDate, getStock());
     }
 
-
 }

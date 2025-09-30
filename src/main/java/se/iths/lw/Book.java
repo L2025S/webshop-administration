@@ -23,6 +23,6 @@ class Book extends Product {
     @Override
     public String toCsvFormat() {
         return String.format (Locale.US, "%s, %s, %s, %.2f, %s, %d" , getArticleNumber(), getTitle(), author, getPrice(), getDescription(), getStock());
-    } // IntelliJ use dot as decimal point , not a comma. I write my code no IntelliJ and my computer use Swedish math system.
+    } // Locale.US to make sure the decimal points can be read correctly in a Swedish Operating System.
 
 }
