@@ -7,7 +7,7 @@ class Clothes extends Product {
     private String size;
     private String color;
 
-    Clothes (String articleNumber, String title, String size, String color, double price, String description, int stock ) {
+    Clothes (String articleNumber, String title,double price, String description, int stock, String size, String color ) {
         super (articleNumber, title, price, description, stock);
         this.size = size;
         this.color = color;
@@ -32,26 +32,26 @@ class Clothes extends Product {
 
     @Override
     public String toCsvFormat() {
-        return String.format (Locale.US, "%s, %s, %s, %s, %.2f, %s, %d", getArticleNumber(), getTitle(),size, color, getPrice(), getDescription(), getStock());
+        return String.format (Locale.US, "%s, %s, %.2f, %s, %d, %s, %s", getArticleNumber(), getTitle(), getPrice(), getDescription(), getStock(), size, color);
     }
 
     @Override
     Clothes addNew() {
-        Clothes clothes = new Clothes (getArticleNumber(), getTitle(), size, color, getPrice(), getDescription(), getStock());
+        Clothes clothes = new Clothes (getArticleNumber(), getTitle(), getPrice(), getDescription(), getStock(),size, color );
         String articleNumber = JOptionPane.showInputDialog("Enter Article Number:");
         clothes.setArticleNumber(articleNumber);
         String title = JOptionPane.showInputDialog("Enter Title: ");
         clothes.setTitle(title);
-        String size = (JOptionPane.showInputDialog("Enter Size: e.g X,M,or L")).toUpperCase();
-        clothes.setSize(size);
-        String color = JOptionPane.showInputDialog("Enter Color: ");
-        clothes.setColor(color);
         double price = Double.parseDouble(JOptionPane.showInputDialog("Enter the price"));
         clothes.setPrice(price);
         String description = JOptionPane.showInputDialog("Enter the description");
         clothes.setDescription(description);
         int stock = Integer.parseInt(JOptionPane.showInputDialog("Enter the stock"));
         clothes.setStock(stock);
+        String size = (JOptionPane.showInputDialog("Enter Size: e.g X,M,or L")).toUpperCase();
+        clothes.setSize(size);
+        String color = JOptionPane.showInputDialog("Enter Color: ");
+        clothes.setColor(color);
         return clothes;
     }
 }

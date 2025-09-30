@@ -1,5 +1,7 @@
 package se.iths.lw;
 
+import javax.swing.*;
+
 abstract class Product {
     private String articleNumber;
     private String title;
