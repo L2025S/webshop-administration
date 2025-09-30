@@ -49,4 +49,5 @@ abstract class Product {
     }
 
     abstract String toCsvFormat();
+    abstract Product addNew();
 }
