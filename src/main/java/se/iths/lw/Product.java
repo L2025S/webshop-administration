@@ -48,11 +48,5 @@ abstract class Product {
         this.stock = stock;
     }
 
-    @Override
-    public String toString() {
-        return "Product " + "articleNumber: " + articleNumber + ", title: " + title + ", price: " + price +
-                ", description: " + description + ",stock: " + stock;
-    }
-
-
+    abstract String toCsvFormat();
 }

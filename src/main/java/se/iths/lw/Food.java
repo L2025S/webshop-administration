@@ -1,6 +1,7 @@
 package se.iths.lw;
 
 import java.time.LocalDate;
+import java.util.Locale;
 
 class Food extends Product {
     private LocalDate expirationDate;
@@ -22,8 +23,9 @@ class Food extends Product {
     }
 
     @Override
-    public String toString() {
-        return "Food " + "articleNumber=" + getArticleNumber() + ", title=" + getTitle() + ", price=" + getPrice() +
-                ", description: " + getDescription() + ",stock: " + getStock() + ", expirationDate=" + getExpirationDate();
+    public String toCsvFormat() {
+        return String.format(Locale.US, "%s, %s, %.2f, %s, %s ", getExpirationDate(), getTitle(), getPrice(), expirationDate, getStock());
     }
+
+
 }

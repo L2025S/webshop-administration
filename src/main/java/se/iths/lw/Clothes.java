@@ -1,5 +1,7 @@
 package se.iths.lw;
 
+import java.util.Locale;
+
 class Clothes extends Product {
     private String size;
     private String color;
@@ -28,8 +30,7 @@ class Clothes extends Product {
     }
 
     @Override
-    public String toString(){
-        return "Clothes " + "articleNumber: " + getArticleNumber() + ", title: " + getTitle() + ", size: " + size +
-                ", color: " + color + ", price: " + getPrice() + ", description: " + getDescription() + ", stock: " + getStock();
+    public String toCsvFormat() {
+        return String.format (Locale.US, "%s, %s, %s, %s, %.2f, %s, %d", getArticleNumber(), getTitle(),size, color, getPrice(),getDescription(), getStock());
     }
 }
