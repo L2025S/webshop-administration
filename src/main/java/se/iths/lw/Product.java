@@ -51,5 +51,12 @@ abstract class Product {
     }
 
     abstract String toCsvFormat();
-    abstract Product addNew();
+
+    void addNew() {
+        setArticleNumber (JOptionPane.showInputDialog("Enter Article Number:"));
+        setTitle (JOptionPane.showInputDialog("Enter Title:"));
+        setPrice(Double.parseDouble((JOptionPane.showInputDialog("Enter Price: ")).replace(",","."))); // Swedish decimal point
+        setDescription(JOptionPane.showInputDialog("Enter Description:"));
+        setStock(Integer.parseInt(JOptionPane.showInputDialog("Enter Stock Quantity: ")));
+    }
 }

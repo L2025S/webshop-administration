@@ -36,22 +36,9 @@ class Clothes extends Product {
     }
 
     @Override
-    Clothes addNew() {
-        Clothes clothes = new Clothes (getArticleNumber(), getTitle(), getPrice(), getDescription(), getStock(),size, color );
-        String articleNumber = JOptionPane.showInputDialog("Enter Article Number:");
-        clothes.setArticleNumber(articleNumber);
-        String title = JOptionPane.showInputDialog("Enter Title: ");
-        clothes.setTitle(title);
-        double price = Double.parseDouble(JOptionPane.showInputDialog("Enter the price"));
-        clothes.setPrice(price);
-        String description = JOptionPane.showInputDialog("Enter the description");
-        clothes.setDescription(description);
-        int stock = Integer.parseInt(JOptionPane.showInputDialog("Enter the stock"));
-        clothes.setStock(stock);
-        String size = (JOptionPane.showInputDialog("Enter Size: e.g X,M,or L")).toUpperCase();
-        clothes.setSize(size);
-        String color = JOptionPane.showInputDialog("Enter Color: ");
-        clothes.setColor(color);
-        return clothes;
+    void addNew() {
+        super.addNew();
+        setSize ((JOptionPane.showInputDialog("Enter Size: e.g X,M,or L")).toUpperCase());
+        setColor(JOptionPane.showInputDialog("Enter Color: "));
     }
 }

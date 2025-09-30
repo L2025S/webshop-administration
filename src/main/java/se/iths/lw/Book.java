@@ -30,21 +30,10 @@ class Book extends Product {
     } // Locale.US to make sure the decimal points can be read correctly in a Swedish Operating System.
 
     @Override
-    Book addNew(){
-        Book book = new Book (getArticleNumber(),getTitle(), getPrice(),getDescription(),getStock(), author);
-        String articleNumber = JOptionPane.showInputDialog("Enter Article Number: ");
-        book.setArticleNumber(articleNumber);
-        String title = JOptionPane.showInputDialog("Enter Title: ");
-        book.setTitle(title);
-        double price = Double.parseDouble(JOptionPane.showInputDialog("Enter Price: "));
-        book.setPrice(price);
-        String description = JOptionPane.showInputDialog("Enter Description: ");
-        book.setDescription(description);
-        int stock = Integer.parseInt(JOptionPane.showInputDialog("Enter Stock: "));
-        book.setStock(stock);
-        String author = JOptionPane.showInputDialog ("Enter Author: ");
-        book.setAuthor(author);
-        return book;
+    void addNew(){
+        super.addNew();
+        setAuthor(JOptionPane.showInputDialog ("Enter Author: "));
+
 
     }
 
