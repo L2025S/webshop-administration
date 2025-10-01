@@ -1,6 +1,8 @@
 package se.iths.lw;
 
 import javax.swing.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -78,10 +80,28 @@ class Main {
                 break;
 
             case "Show product's info":
-                        break;
+                String searchedProduct = JOptionPane.showInputDialog(
+                        null,
+                        "Enter the product name",
+                        "Product's information",
+                        JOptionPane.QUESTION_MESSAGE
+                );
+                try {
+                    BufferedReader reader = new BufferedReader(new FileReader("webshop.csv"));
+                    String line = reader.readLine();
+                    if (line.contains(searchedProduct)) {
+                        System.out.println(line);
+                    } else {
+                        System.out.println("The product is not found.");
+                    }
+                } catch (IOException e) {
+                    System.out.println(e.getMessage());
+                }
+                break;
             case "Exit application":
                         System.exit(0);
 
         }
     }
 }
+

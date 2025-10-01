@@ -25,6 +25,11 @@ class Food extends Product {
         return "Food";
     }
 
+    void printProductInfo(){
+        System.out.println("\n Article number:" + getArticleNumber() + "\n Title: " + getTitle() + "\n Price: " + getPrice() +
+            "\n Description: " + getDescription()+ "\n Stock: " + getStock() + "Expriation date: " + expirationDate);
+    }
+
     @Override
     public String toCsvFormat() {
         return String.format(Locale.US, "%s, %s, %.2f, %s, %d, %s ", getArticleNumber(), getTitle(), getPrice(), getDescription(), getStock(),expirationDate);
