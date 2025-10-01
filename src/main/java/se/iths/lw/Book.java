@@ -26,16 +26,13 @@ class Book extends Product {
 
     @Override
     public String toCsvFormat() {
-        return String.format (Locale.US, "%s, %s, %.2f, %s, %d, %s" , getArticleNumber(), getTitle(), getPrice(), getDescription(), getStock(), author);
+        return String.format (Locale.US, "%s, %s, %.2f, %s, %d, %s " , getArticleNumber(), getTitle(), getPrice(), getDescription(), getStock(), author);
     } // Locale.US to make sure the decimal points can be read correctly in a Swedish Operating System.
 
     @Override
-    void addNew(){
+    void addNew() {
         super.addNew();
         setAuthor(JOptionPane.showInputDialog ("Enter Author: "));
-
-
     }
-
 
 }

@@ -32,7 +32,7 @@ class Clothes extends Product {
 
     @Override
     public String toCsvFormat() {
-        return String.format (Locale.US, "%s, %s, %.2f, %s, %d, %s, %s", getArticleNumber(), getTitle(), getPrice(), getDescription(), getStock(), size, color);
+        return String.format (Locale.US, "%s, %s, %.2f, %s, %d, %s, %s ", getArticleNumber(), getTitle(), getPrice(), getDescription(), getStock(), size, color);
     }
 
     @Override
@@ -41,4 +41,5 @@ class Clothes extends Product {
         setSize ((JOptionPane.showInputDialog("Enter Size: e.g X,M,or L")).toUpperCase());
         setColor(JOptionPane.showInputDialog("Enter Color: "));
     }
+
 }

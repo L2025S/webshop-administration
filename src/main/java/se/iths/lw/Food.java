@@ -33,7 +33,6 @@ class Food extends Product {
     void addNew() {
         super.addNew();
         setExpirationDate(LocalDate.parse(JOptionPane.showInputDialog ("Enter Expiration Date : yyyy-mm-dd")));
-
     }
 
 }
