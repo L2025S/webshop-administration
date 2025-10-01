@@ -6,7 +6,7 @@ import java.util.Locale;
 class Book extends Product {
     private String author;
 
-    Book (String articleNumber, String title, double price, String description, int stock, String author) {
+    Book ( String articleNumber, String title, double price, String description, int stock, String author) {
         super(articleNumber, title, price, description, stock);
         this.author = author;
     }
