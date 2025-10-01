@@ -82,9 +82,6 @@ class Main {
             case "Exit application":
                         System.exit(0);
 
-
-
-
         }
     }
 }
