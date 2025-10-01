@@ -8,7 +8,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -49,6 +48,7 @@ class Main {
                         } catch (IOException e) {
                             System.out.println(e.getMessage());
                         }
+                        break;
                     case "Add Clothes":
                         Clothes clothes = new Clothes("articleNumber", "title", 0.0, "description", 0, "size", "color");
                         clothes.addNew();
@@ -59,6 +59,7 @@ class Main {
                         } catch (IOException e) {
                             System.out.println(e.getMessage());
                         }
+                        break;
                     case "Add Food":
                         Food food = new Food("articleNumber", "title", 0.0, "description", 0, LocalDate.parse("2025-10-01"));
                         food.addNew();
@@ -69,6 +70,7 @@ class Main {
                         } catch (IOException e) {
                             System.out.println(e.getMessage());
                         }
+                        break;
                 }
                 break;
             case "List all products":
@@ -86,14 +88,15 @@ class Main {
                         "Product's information",
                         JOptionPane.QUESTION_MESSAGE
                 );
+
                 try {
                     BufferedReader reader = new BufferedReader(new FileReader("webshop.csv"));
                     String line = reader.readLine();
-                    if (line.contains(searchedProduct)) {
-                        System.out.println(line);
-                    } else {
-                        System.out.println("The product is not found.");
-                    }
+                        if (line.toLowerCase().contains(searchedProduct.toLowerCase())) {
+                            System.out.println(line);
+                        } else {
+                            System.out.println("The product is not found.");
+                        }
                 } catch (IOException e) {
                     System.out.println(e.getMessage());
                 }
