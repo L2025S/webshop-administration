@@ -1,23 +1,23 @@
 package se.iths.lw;
 
 class User {
-    private String userName;
+    private String username;
     private String password;
 
-    User (String userName, String password) {
-        this.userName = userName;
+    User (String username, String password) {
+        this.username = username;
         this.password = password;
     }
 
-    String getUserName() {
-        return userName;
+    String getUsername() {
+        return username;
     }
     String getPassword() {
         return password;
     }
 
-    void setUserName (String userName) {
-        this.userName = userName;
+    void setUsername (String userName) {
+        this.username = userName;
     }
     void setPassword (String password){
         this.password = password;
@@ -26,8 +26,6 @@ class User {
 
     @Override
     public String toString() {
-        return "Username: " + userName;
+        return "Username: " + username;
     }
-
-
 }
