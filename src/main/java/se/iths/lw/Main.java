@@ -14,38 +14,19 @@ import java.util.List;
 
 class Main {
 
-    private static User findUser(List<User> users, String username, String password) {
-        for (User u : users) {
-            if (u.getUsername().equals(username) && u.getPassword().equals(password)) {
-                return u;
-            }
-        }
-        return null;
-    }
-
-    private static User login(List<User> users) {
-        while (true) {
-            String username = JOptionPane.showInputDialog("Enter Username: ");
-            String password = JOptionPane.showInputDialog("Enter Password: ");
-            User currentUser = findUser(users, username, password);
-            if (currentUser != null) {
-                return currentUser;
-            }
-            System.out.println("Invalid Username or Password");
-        }
-    }
-
-
     public static void main(String[] args) throws IOException {
 
         List<User> users = new ArrayList<>();
         User theOnlyUser = new User("lw2025", "java2025");
         users.add(theOnlyUser);
         boolean running = true;
-        while (running) {
-            User currentUser = login(users);
+        boolean loggedIn= false;
 
-            boolean loggedIn = true;
+        while (running) {
+
+            login(users);
+
+            createFile();
 
             while (loggedIn) {
                 Object[] functions = {"Add product", "List all products", "Show product's info.", "Exit application"};
@@ -72,74 +53,32 @@ class Main {
                         );
                         switch (selectedProduct.toString()) {
                             case "Add Book":
-                                Book book = new Book("articleNumber", "title", 0.0, "description", 0, "author");
-                                book.addNew();
-                                book.toCsvFormat();
-                                String content = book.toCsvFormat();
-                                Path file = Path.of("webshop.csv");
-                                try {
-                                    Files.writeString(file, System.lineSeparator() + content, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
-                                } catch (IOException e) {
-                                    System.out.println(e.getMessage());
-                                }
+                                addBook();
+                                String content;
+                                Path file;
                                 break;
                             case "Add Clothes":
-                                Clothes clothes = new Clothes("articleNumber", "title", 0.0, "description", 0, "size", "color");
-                                clothes.addNew();
-                                content = clothes.toCsvFormat();
-                                file = Path.of("webshop.csv");
-                                try {
-                                    Files.writeString(file, System.lineSeparator() + content, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
-                                } catch (IOException e) {
-                                    System.out.println(e.getMessage());
-                                }
+                                addClothes();
                                 break;
                             case "Add Food":
-                                Food food = new Food("articleNumber", "title", 0.0, "description", 0, LocalDate.parse("2025-10-01"));
-                                food.addNew();
-                                content = food.toCsvFormat();
-                                file = Path.of("webshop.csv");
-                                try {
-                                    Files.writeString(file, System.lineSeparator() + content, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
-                                } catch (IOException e) {
-                                    System.out.println(e.getMessage());
-                                }
+                                addFood();
                                 break;
                         }
                         break;
 
                     case "List all products":
-                        List<String> lines;
-                        lines = Files.readAllLines(Path.of("webshop.csv"));
-                        for (String line : lines) {
-                            System.out.println(line);
-                        }
+                        listAllProducts();
                         break;
 
                     case "Show product's info":
-                        String searchedProduct = JOptionPane.showInputDialog(
-                                null,
-                                "Enter the product name",
-                                "Product's information",
-                                JOptionPane.QUESTION_MESSAGE
-                        );
-                        try {
-                            BufferedReader reader = new BufferedReader(new FileReader("webshop.csv"));
-                            String line = reader.readLine();
-                            if (line.toLowerCase().contains(searchedProduct.toLowerCase())) {
-                                System.out.println(line);
-                            } else {
-                                System.out.println("The product is not found.");
-                            }
-                        } catch (IOException e) {
-                            System.out.println(e.getMessage());
-                        }
+                        showProductsInfo();
                         break;
 
 
                     case "Exit application":
                         System.out.println("Quitting the application...");
                         loggedIn = false;
+                        running = false;
                         System.exit(0);
                         break;
 
@@ -147,4 +86,107 @@ class Main {
             }
         }
     }
+
+    private static void createFile() throws IOException {
+        Path file = Path.of ("webshop.csv");
+        if(Files.notExists(file)) {
+            Files.createFile(file);
+        }
+    }
+
+    private static void showProductsInfo() {
+        String searchedProduct = JOptionPane.showInputDialog(
+                null,
+                "Enter the product name",
+                "Product's information",
+                JOptionPane.QUESTION_MESSAGE
+        );
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("webshop.csv"));
+            String line = reader.readLine();
+            if (line.toLowerCase().contains(searchedProduct.toLowerCase())) {
+                System.out.println(line);
+            } else {
+                System.out.println("The product is not found.");
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private static void listAllProducts() throws IOException {
+        List<String> lines;
+        lines = Files.readAllLines(Path.of("webshop.csv"));
+        for (String line : lines) {
+            System.out.println(line);
+        }
+    }
+
+    // ======================= hjälpmetoder att lägga till olika produkter =================================================
+    private static void addFood() {
+        Path file;
+        String content;
+        Food food = new Food("articleNumber", "title", 0.0, "description", 0, LocalDate.parse("2025-10-01"));
+        food.addNew();
+        content = food.toCsvFormat();
+
+        file = Path.of("webshop.csv");
+        try {
+            Files.writeString(file, System.lineSeparator() + content, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private static void addClothes() {
+        String content;
+        Path file;
+        Clothes clothes = new Clothes("articleNumber", "title", 0.0, "description", 0, "size", "color");
+        clothes.addNew();
+        content = clothes.toCsvFormat();
+
+        file = Path.of("webshop.csv");
+        try {
+            Files.writeString(file, System.lineSeparator() + content, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private static void addBook() {
+        Book book = new Book("articleNumber", "title", 0.0, "description", 0, "author");
+        book.addNew();
+        book.toCsvFormat();
+        String content = book.toCsvFormat();
+
+        Path file = Path.of("webshop.csv");
+        try {
+            Files.writeString(file, System.lineSeparator() + content, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    //========================= hjälpmetoder att logga in=================================================================
+    private static User findUser(List<User> users, String username, String password) {
+        for (User u : users) {
+            if (u.getUsername().equals(username) && u.getPassword().equals(password)) {
+                return u;
+            }
+        }
+        return null;
+    }
+
+    private static User login(List<User> users) {
+        while (true) {
+            String username = JOptionPane.showInputDialog("Enter Username: ");
+            String password = JOptionPane.showInputDialog("Enter Password: ");
+            User currentUser = findUser(users, username, password);
+            if (currentUser != null) {
+                boolean loggedIn = true;
+            }
+            System.out.println("Invalid Username or Password");
+        }
+    }
 }
+
