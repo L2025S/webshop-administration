@@ -20,11 +20,11 @@ class Main {
         User theOnlyUser = new User("lw2025", "java2025");
         users.add(theOnlyUser);
         boolean running = true;
-        boolean loggedIn= false;
-
         while (running) {
 
             login(users);
+
+            boolean loggedIn = true;
 
             createFile();
 
@@ -88,8 +88,8 @@ class Main {
     }
 
     private static void createFile() throws IOException {
-        Path file = Path.of ("webshop.csv");
-        if(Files.notExists(file)) {
+        Path file = Path.of("webshop.csv");
+        if (Files.notExists(file)) {
             Files.createFile(file);
         }
     }
@@ -117,8 +117,12 @@ class Main {
     private static void listAllProducts() throws IOException {
         List<String> lines;
         lines = Files.readAllLines(Path.of("webshop.csv"));
-        for (String line : lines) {
-            System.out.println(line);
+        if (!lines.isEmpty()) {
+            for (String line : lines) {
+                System.out.println(line);
+            }
+        } else {
+            System.out.println("There is no product to show. Please add product first.");
         }
     }
 
@@ -182,10 +186,11 @@ class Main {
             String username = JOptionPane.showInputDialog("Enter Username: ");
             String password = JOptionPane.showInputDialog("Enter Password: ");
             User currentUser = findUser(users, username, password);
+
             if (currentUser != null) {
-                boolean loggedIn = true;
+                return currentUser;
             }
-            System.out.println("Invalid Username or Password");
+        System.out.println("Invalid Username or Password");
         }
     }
 }
