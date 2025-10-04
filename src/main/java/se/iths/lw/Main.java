@@ -20,6 +20,7 @@ class Main {
         User theOnlyUser = new User("lw2025", "java2025");
         users.add(theOnlyUser);
         boolean running = true;
+
         while (running) {
 
             login(users);
@@ -63,14 +64,14 @@ class Main {
                             case "Add Food":
                                 addFood();
                                 break;
-                        }
+                                }
                         break;
 
                     case "List all products":
                         listAllProducts();
                         break;
 
-                    case "Show product's info":
+                    case "Show product's info.":
                         showProductsInfo();
                         break;
 
@@ -101,14 +102,16 @@ class Main {
                 "Product's information",
                 JOptionPane.QUESTION_MESSAGE
         );
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader("webshop.csv"));
-            String line = reader.readLine();
-            if (line.toLowerCase().contains(searchedProduct.toLowerCase())) {
-                System.out.println(line);
-            } else {
-                System.out.println("The product is not found.");
+        try (BufferedReader reader = new BufferedReader(new FileReader("webshop.csv"))) {
+
+            String line;
+
+            while ((line = reader.readLine())!=null) {
+                if (line.trim().toLowerCase().contains(searchedProduct.trim().toLowerCase())) {
+                    System.out.println("The product's information: " + line);
+                }
             }
+
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
