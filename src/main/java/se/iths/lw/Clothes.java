@@ -30,10 +30,6 @@ class Clothes extends Product {
         return "Clothes";
     }
 
-    void printProductInfo(){
-        System.out.println("\n Article number:" + getArticleNumber() + "\n Title: " + getTitle() + "\n Price: " + getPrice() +
-                "\n Description: " + getDescription()+ "\n Stock: " + getStock() + "\n Size: " + size + "\n Color: " + color);
-    }
 
     @Override
     public String toCsvFormat() {

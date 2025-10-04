@@ -24,11 +24,6 @@ class Book extends Product {
     }
 
 
-    void printProductInfo () {
-        System.out.println("\n Article number:" + getArticleNumber() + "\n Title: " + getTitle() + "\n Price: " + getPrice() +
-                "\n Description: " + getDescription()+ "\n Stock: " + getStock() + "\n Author: " + author);
-    }
-
     @Override
     public String toCsvFormat() {
         return String.format (Locale.US, "%s, %s, %.2f, %s, %d, %s " , getArticleNumber(), getTitle(), getPrice(), getDescription(), getStock(), author);

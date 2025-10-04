@@ -111,7 +111,6 @@ class Main {
                     System.out.println("The product's information: " + line);
                 }
             }
-
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
