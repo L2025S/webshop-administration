@@ -39,7 +39,7 @@ class Clothes extends Product {
     @Override
     void addNew() {
         super.addNew();
-        setSize ((JOptionPane.showInputDialog("Enter Size: e.g X,M,or L")).toUpperCase());
+        setSize ((JOptionPane.showInputDialog("Enter Size: e.g S,M,or L")).toUpperCase());
         setColor(JOptionPane.showInputDialog("Enter Color: "));
     }
 
