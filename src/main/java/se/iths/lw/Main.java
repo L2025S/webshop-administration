@@ -13,8 +13,10 @@ import java.util.List;
 
 
 class Main {
-
+ private static UI ui;
     public static void main(String[] args) throws IOException {
+
+        ui = new UIGraphic();
 
         List<User> users = new ArrayList<>();
         User theOnlyUser = new User("lw2025", "java2025");
@@ -30,29 +32,11 @@ class Main {
             createFile();
 
             while (loggedIn) {
-                Object[] functions = {"Add product", "List all products", "Show product's info.", "Exit application"};
-                Object selectedFunction = JOptionPane.showInputDialog(
-                        null,
-                        "Choose the function",
-                        "Functions",
-                        JOptionPane.INFORMATION_MESSAGE,
-                        null,
-                        functions,
-                        functions[0]
-                );
-                switch (selectedFunction.toString()) {
+                String selectedFunction = ui.menu();
+                switch (selectedFunction) {
                     case "Add product":
-                        Object[] addProduct = {"Add Book", "Add Clothes", "Add Food"};
-                        Object selectedProduct = JOptionPane.showInputDialog(
-                                null,
-                                "Choose the category",
-                                "Category",
-                                JOptionPane.INFORMATION_MESSAGE,
-                                null,
-                                addProduct,
-                                addProduct[0]
-                        );
-                        switch (selectedProduct.toString()) {
+                        String selectedProduct = ui.productMenu();
+                        switch (selectedProduct) {
                             case "Add Book":
                                 addBook();
                                 String content;
@@ -102,6 +86,7 @@ class Main {
                 "Product's information",
                 JOptionPane.QUESTION_MESSAGE
         );
+        
         try (BufferedReader reader = new BufferedReader(new FileReader("webshop.csv"))) {
 
             String line;

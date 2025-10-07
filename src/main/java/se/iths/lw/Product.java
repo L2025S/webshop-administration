@@ -59,4 +59,5 @@ abstract class Product {
         setDescription(JOptionPane.showInputDialog("Enter Description:"));
         setStock(Integer.parseInt(JOptionPane.showInputDialog("Enter Stock Quantity: ")));
     }
+
 }
